@@ -139,8 +139,8 @@
 
     if (!location.hash) {
         zoomer.scale(0.6);
-        zoomer.translate([500, 700]);
-        svg.attr("transform","translate(500, 700) scale(0.6)");
+        zoomer.translate([850, 700]);
+        svg.attr("transform","translate(830, 700) scale(0.7)");
     }
 
     var rect = svg.append("rect")
@@ -226,8 +226,6 @@
               .enter().append("g")
               .attr("class", "node")
               .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-              //.on('mouseover', selectNode)
-              //.on('mouseout', blurNodes)
               .on('click', function (d) {
                     window.location = '#' + locationHashMapping[d.group] + ":" + d.name;
                     catchLocationHash()
