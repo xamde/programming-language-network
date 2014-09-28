@@ -273,21 +273,21 @@
             });
             if (coordinates) {
 
-                var x=(coordinates[0] * -1) + width / 2;
-                var y=(coordinates[1] * -1) + height / 2;
+                var x = (coordinates[0] * -1) + width / 2;
+                var y = (coordinates[1] * -1) + height / 2;
 
                 zoomer.translate([x, y]);
                 zoomer.scale(1);
 
                 svg.transition()
-                   .attr("transform", "translate(" + x + ", " + y + ")scale(1)");
+                   .attr("transform", "translate(" + x + ", " + y + ") scale(1)");
 
             }
         }
     }
 
     function zoom() {
-        svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        svg.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
     }
 
     function blurNodes() {
