@@ -7,7 +7,7 @@
         body {
             margin: 0;
             font: 17px helvetica, sans-serif;
-            background: #fff;
+            background: #353535;
         }
 
         .node {
@@ -38,11 +38,6 @@
         text {
             max-width: 40px;
             overflow: hidden;
-            fill: #282828;
-        }
-
-        .huge {
-
         }
 
         .hidden {
@@ -54,12 +49,13 @@
             width: 328px;
             position: absolute;
             height: 100%;
-            color: #d4d4d4;
+            color: #b3b3b3;
         }
 
         #sidebar p {
             padding: 20px;
             margin: 0;
+            margin-bottom: 20px;
         }
 
         .nodes-info, .edges-info {
@@ -79,6 +75,7 @@
         #sidebar h3 {
             padding: 10px 15px;
             margin: 0;
+            color: #fbf0f7;
         }
 
         .nodes-info li em {
@@ -99,11 +96,6 @@
             margin-top: 8px;
             background: purple;
             margin-left: -25px;
-        }
-        .column {
-            width: 40%;
-            margin-left: 10px;
-            float: left;
         }
     </style>
 </head>
@@ -143,17 +135,19 @@
         svg.attr("transform","translate(830, 700) scale(0.7)");
     }
 
+    var overlaySize = width * 20; // maxzoomlevel
+
     var rect = svg.append("rect")
         .attr("class", "overlay")
-        .attr("width", width + 80000)
-        .attr("height", height + 80000)
-            .attr("x", -80000)
-            .attr("y", -80000);
+        .attr("width", (width * 10) + overlaySize)
+        .attr("height", (height * 10) + overlaySize)
+        .attr("x", -overlaySize)
+        .attr("y", -overlaySize);
 
     var node, link, text, graphSource;
 
     var nodeColors = {
-        "Programming Language": "#FFBF00",
+        "Programming Language": "#F9BF3B",
         "Computer Scientist": "#FF0066",
         "Foundation": "#FFFF00",
         "Dialect": "#6CDFEA",
@@ -169,7 +163,7 @@
     };
 
     var edgeColors = {
-        "Influenced by": "#eee",
+        "Influenced by": "#dfdfdf",
         "Designed by": "#FF0066",
         "Developer": "#FFFF00",
         "Dialects": "#6CDFEA",
@@ -236,7 +230,9 @@
             .style("fill", function(d) { return nodeColors[d.group] });
 
         node.append("text")
-            .attr("class", "huge")
+            .attr("class", function (d) {
+                return d.w > 20 ? "huge":"small";
+            })
             .attr("dy", "0.3em")
             .attr("dx", 0)
             .style("text-anchor", "middle")
